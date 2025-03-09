@@ -4,11 +4,16 @@ from PyQt5.QtWidgets import (QApplication, QWidget, QLabel,
                              QLineEdit, QPushButton, QVBoxLayout)
 from PyQt5.QtCore import Qt
 
-if __name__ == "__main__":
-    app = QApplication(sys.argv)
-    Weather_App = WeatherApp()
-    Weather_App.show()
-    sys.exit(app.exec_())
+class WeatherApp(QWidget):  
+    def __init__(self):
+        super().__init__()
+        self.city_label = QLabel("Enter City Name", self)
+        self.city_input = QLineEdit(self)
+        self.get_weather_button = QPushButton("Get Weather", self)
+        self.temperature_label = QLabel(self)
+        self.emoji_label = QLabel(self) 
+        self.description_label = QLabel(self)
+        self.initUI()
 
     def initUI(self):
         self.setWindowTitle("Weather App")
@@ -124,7 +129,7 @@ def get_weather(self):
         self.description_label.setText(weather_description)
 
 @staticmethod
-    def get_weather_emoji(weather_id):
+def get_weather_emoji(weather_id):
 
         if 200 <= weather_id <= 232:
                 return "⛈️"
@@ -150,7 +155,7 @@ def get_weather(self):
                 return ""
 
 if __name__ == "__main__":
-    app = QApplication(sys.argv)
-    Weather_App = WeatherApp()
-    Weather_App.show()
-    sys.exit(app.exec_())
+        app = QApplication(sys.argv)
+        Weather_App = WeatherApp()
+        Weather_App.show()
+        sys.exit(app.exec_())
